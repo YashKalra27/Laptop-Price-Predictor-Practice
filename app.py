@@ -269,33 +269,3 @@ if submit:
 
 # Footer overlay
 st.markdown("<div class='footer'>Developed by Komal Mittal</div>", unsafe_allow_html=True)
-
-# Custom JS Mouse Glow Injector
-import streamlit.components.v1 as components
-components.html(
-    """
-    <script>
-    const parentDoc = window.parent.document;
-    if (!parentDoc.getElementById('custom-mouse-glow')) {
-        const glow = parentDoc.createElement('div');
-        glow.id = 'custom-mouse-glow';
-        glow.style.cssText = 'width: 300px; height: 300px; background: radial-gradient(circle, rgba(0, 212, 255, 0.15) 0%, transparent 60%); border-radius: 50%; position: fixed; pointer-events: none; z-index: 9999; transform: translate(-50%, -50%); transition: left 0.1s ease-out, top 0.1s ease-out; mix-blend-mode: screen;';
-        parentDoc.body.appendChild(glow);
-        
-        const script = parentDoc.createElement('script');
-        script.id = 'tracker-script';
-        script.innerHTML = `
-            document.addEventListener('mousemove', function(e) {
-                var g = document.getElementById('custom-mouse-glow');
-                if (g) {
-                    g.style.left = e.clientX + 'px';
-                    g.style.top = e.clientY + 'px';
-                }
-            });
-        `;
-        parentDoc.body.appendChild(script);
-    }
-    </script>
-    """,
-    height=0, width=0
-)
